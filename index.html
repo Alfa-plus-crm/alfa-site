@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Alfa CRM — единое пространство для продаж, клиентов и команды</title><meta name="description" content="Alfa CRM помогает управлять клиентами, сделками, задачами и командой в одной системе. Начните с бесплатного пробного периода."><meta property="og:title" content="Alfa CRM — весь ваш бизнес в одной системе"><meta property="og:description" content="Клиенты, продажи, команда и аналитика в одном пространстве. Попробуйте бесплатно."><meta property="og:type" content="website"><meta name="theme-color" content="#0a0a0c"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&subset=cyrillic&display=swap">
 <style>
 :root{color-scheme:dark;--bg:#0a0a0c;--s:#121217;--b:#26262f;--t:#ececf1;--m:#9a9aa8;--a:#7c8cff;--g:#5eead4;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));min-height:100%;height:auto}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));height:100%}
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--t);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden;min-height:100%}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:rgba(10,10,12,.85);z-index:60}
@@ -39,53 +39,6 @@ details{border:1px solid var(--b);border-radius:14px;padding:14px 18px;margin-bo
 footer{border-top:1px solid var(--b);padding:40px 0 24px;font-size:.9rem}footer .w{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}footer a,footer .lk{color:var(--m);text-decoration:none;display:block;margin:6px 0}
 .ck{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:70;max-width:560px;margin:auto;background:var(--s);border:1px solid var(--b);border-radius:16px;padding:16px;display:none}.ck.on{display:block}.ck .btn{padding:9px 16px}
 dialog{background:var(--s);color:var(--t);border:1px solid var(--b);border-radius:16px;max-width:520px}dialog::backdrop{background:rgba(0,0,0,.7)}
-
-/* Horizontal one-panel-at-a-time presentation; lead form stays below it */
-html,body{height:auto;min-height:100%}
-body{overflow-x:hidden;min-height:100vh}
-#slidesViewport{height:calc(100svh - 64px);min-height:520px;overflow:hidden;position:relative;width:100%;}
-#slidesTrack{height:100%;width:100%;display:flex;flex-flow:row nowrap;transition:transform .65s cubic-bezier(.22,.75,.25,1);will-change:transform}
-.slide-panel{flex:0 0 100%;width:100%;height:100%;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#45455a transparent}
-.slide-panel>section{min-height:100%;width:100%;display:flex;align-items:center;padding:36px 0}
-.slide-panel>.w.hero{min-height:100%;width:100%;max-width:1120px;margin:0 auto;align-content:center;padding:36px 20px;}
-.slide-panel .w{width:100%;max-width:1120px;margin-left:auto;margin-right:auto}
-.slide-panel section .w{opacity:0;transform:translateX(28px);transition:opacity .55s,transform .55s}
-.slide-panel.active section .w,.slide-panel.active>.w{opacity:1;transform:none}
-#lead{scroll-margin-top:76px;position:relative}
-#lead> .w{padding-top:58px;padding-bottom:58px}
-/* Navigation cluster: previous arrow, block counter, next arrow — bottom-right */
-.page-nav{position:fixed;inset:64px 0 0;z-index:55;display:flex;align-items:flex-end;justify-content:flex-end;gap:12px;padding:0 28px 28px;border:0;border-radius:0;background:transparent;box-shadow:none;pointer-events:none;transition:opacity .28s ease}
-.page-nav button{pointer-events:auto;display:grid;place-items:center;width:88px;height:88px;padding:0;border:1px solid rgba(124,140,255,.48);border-radius:22px;background:linear-gradient(145deg,rgba(35,37,58,.96),rgba(18,18,23,.94));backdrop-filter:blur(16px);color:#fff;font-size:58px;line-height:1;cursor:pointer;box-shadow:0 12px 38px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.1);transition:transform .22s cubic-bezier(.2,.8,.2,1),background .24s ease,border-color .24s ease,box-shadow .24s ease,filter .24s ease}
-.page-nav button span{display:grid;place-items:center;width:100%;height:100%;line-height:1;font-family:Arial,sans-serif;font-size:1em;font-weight:400;transform:translateY(-2px);user-select:none}
-.page-nav button:hover{transform:translateY(-4px) scale(1.06);background:linear-gradient(145deg,rgba(85,99,220,.98),rgba(45,54,125,.98));border-color:rgba(160,174,255,.9);box-shadow:0 16px 46px rgba(90,105,255,.34);filter:brightness(1.12)}
-.page-nav button:active{transform:translateY(1px) scale(.94);box-shadow:0 4px 14px rgba(0,0,0,.35)}
-.page-nav button:disabled{opacity:.2;cursor:default;transform:none;animation:none;box-shadow:none;filter:none}
-.page-nav button:focus-visible{outline:3px solid var(--g);outline-offset:4px}
-.page-nav-info{position:static;transform:none;min-width:76px;text-align:center;color:var(--m);font-size:11px;line-height:1.3;padding:10px 13px;border:1px solid rgba(124,140,255,.3);border-radius:14px;background:rgba(18,18,23,.92);backdrop-filter:blur(16px);box-shadow:0 8px 28px rgba(0,0,0,.25);pointer-events:none}
-.page-nav-info strong{display:block;color:var(--t);font-size:15px;letter-spacing:.04em}
-/* A quiet pulse starts only after 15 seconds without interaction. */
-.page-nav.is-idle button:not(:disabled){animation:idlePulse 3.4s ease-in-out infinite}
-@keyframes idlePulse{0%,100%{box-shadow:0 12px 38px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.1)}50%{box-shadow:0 12px 42px rgba(124,140,255,.22),0 0 0 5px rgba(124,140,255,.045),inset 0 1px rgba(255,255,255,.12)}}
-/* Funnel stages rise from the bottom upward when their slide becomes active. */
-.fn div{transform:scaleY(0);transform-origin:center bottom}
-.slide-panel.active #fn div{animation:funnelRise .72s cubic-bezier(.2,.75,.25,1) both}
-.slide-panel.active #fn div:nth-child(1){animation-delay:.48s}
-.slide-panel.active #fn div:nth-child(2){animation-delay:.38s}
-.slide-panel.active #fn div:nth-child(3){animation-delay:.28s}
-.slide-panel.active #fn div:nth-child(4){animation-delay:.18s}
-.slide-panel.active #fn div:nth-child(5){animation-delay:.08s}
-.slide-panel.active #fn div:nth-child(6){animation-delay:0s}
-@keyframes funnelRise{from{opacity:.25;transform:scaleY(0)}to{opacity:1;transform:scaleY(1)}}
-.slide-panel.active section .w,.slide-panel.active>.w,.slide-panel.active.hero>div{animation:panelReveal .72s cubic-bezier(.2,.7,.2,1) both}
-.slide-panel.active.hero>div:nth-child(2){animation-delay:.12s}
-@keyframes panelReveal{from{opacity:0;transform:translate3d(0,18px,0) scale(.99);filter:blur(3px)}to{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
-/* Small tactile feedback across interactive elements. */
-.btn,.lk,button,summary{transition:transform .2s cubic-bezier(.2,.8,.2,1),filter .2s ease,box-shadow .2s ease,border-color .2s ease}
-.btn:hover,.lk:hover,button:not(.page-nav button):hover,summary:hover{transform:translateY(-2px);filter:brightness(1.12)}
-.btn:active,.lk:active,button:active,summary:active{transform:scale(.97)}
-@media(max-width:700px){#slidesViewport{height:calc(100svh - 64px);min-height:500px}.slide-panel>section{padding:28px 0}.slide-panel>.w.hero{padding:28px 20px}.page-nav{inset:64px 0 0;padding:0 12px calc(18px + env(safe-area-inset-bottom,0px));gap:8px}.page-nav button{width:64px;height:64px;border-radius:18px;font-size:44px}.page-nav button span{transform:translateY(-1px)}.page-nav-info{min-width:64px;padding:8px 9px}section{padding:48px 0}}
-@media(prefers-reduced-motion:reduce){.page-nav button{animation:none!important}.slide-panel.active section .w,.slide-panel.active>.w,.slide-panel.active.hero>div,.slide-panel.active #fn div{animation:none!important;transform:none;opacity:1}}
-@media(prefers-reduced-motion:reduce){#slidesTrack{transition:none}.slide-panel section .w{opacity:1;transform:none;transition:none}}
 </style></head><body>
 <header><div class="w"><a class="logo" href="#top">alfa<b>+</b> CRM</a><nav><a href="#problems">Проблемы</a><a href="#features">Возможности</a><a href="#funnel">Воронка</a><a href="#faq">FAQ</a></nav><a class="btn p" href="#lead">Попробовать бесплатно</a></div></header>
 <main id="top">
@@ -103,68 +56,23 @@ body{overflow-x:hidden;min-height:100vh}
 <section><div class="w"><h2>Руководитель и сотрудники — <span class="g">у каждого свой взгляд</span></h2><div class="two"><div class="card rv"><h3>Руководитель</h3><ul><li>Команда, роли и доступы</li><li>Распределение задач</li><li>Результаты и эффективность сотрудников</li></ul></div><div class="card rv"><h3>Сотрудник</h3><ul><li>Свои задачи и клиенты</li><li>Личные показатели</li><li>Ничего лишнего в рабочем экране</li></ul></div></div><p style="margin-top:14px;font-size:.85rem">Реальное ограничение доступа обеспечивается на стороне сервера, а не только скрытием элементов интерфейса.</p></div></section>
 
 
-<section id="trial"><div class="w"><div class="card" style="padding:36px"><h2>Попробуйте Alfa CRM <span class="g">бесплатно</span></h2><p>Не нужно принимать решение вслепую. Познакомьтесь с системой, оцените её возможности и поймите, подходит ли она вашему бизнесу.</p><ul><li>Познакомьтесь с интерфейсом</li><li>Проверьте основные сценарии работы</li><li>Оцените управление клиентами и продажами</li><li>Задайте вопросы нашей команде</li><li>Получите помощь с началом работы</li></ul><p style="margin-top:20px"><a class="btn p" href="#lead" data-go-lead>Получить бесплатный доступ</a></p></div></div></section>
+<section id="trial"><div class="w"><div class="card" style="padding:36px"><h2>Попробуйте Alfa CRM <span class="g">бесплатно</span></h2><p>Не нужно принимать решение вслепую. Познакомьтесь с системой, оцените её возможности и поймите, подходит ли она вашему бизнесу.</p><ul><li>Познакомьтесь с интерфейсом</li><li>Проверьте основные сценарии работы</li><li>Оцените управление клиентами и продажами</li><li>Задайте вопросы нашей команде</li><li>Получите помощь с началом работы</li></ul><p style="margin-top:20px"><a class="btn p" href="#lead">Получить бесплатный доступ</a></p></div></div></section>
 
-
-
-<section id="faq"><div class="w" style="max-width:760px"><h2>Частые вопросы</h2><div id="fq"></div></div></section>
-
-<section><div class="w"><div class="cta"><h2>Начните управлять бизнесом по-новому</h2><p>Познакомьтесь с Alfa CRM и оцените, насколько удобнее может быть работа вашей команды.</p><a class="btn p" id="finalLeadBtn" href="#lead" data-go-lead onclick="event.preventDefault(); const leadFormSection=document.getElementById('lead'); if(leadFormSection){ history.replaceState(null,'','#lead'); leadFormSection.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'}); }">Попробовать бесплатно</a></div></div></section>
 <section id="lead"><div class="w" style="max-width:760px"><h2>Оставьте заявку</h2><p>Мы свяжемся с вами, покажем систему и поможем начать.</p>
 <div class="card" role="note" style="margin:18px 0 22px;border-color:rgba(124,140,255,.55);background:rgba(124,140,255,.09)"><div style="display:flex;gap:12px;align-items:flex-start"><span aria-hidden="true" style="font-size:1.35rem;line-height:1.4">ⓘ</span><div><strong style="color:var(--t)">Перед заполнением включите VPN</strong><p style="margin:4px 0 0">Чтобы отправка заявки прошла корректно, включите VPN перед вводом данных. Если VPN уже включён, можете продолжить.</p></div></div></div>
 <form id="fm" class="f" novalidate><label>Имя<input name="name" autocomplete="name"><span class="e" id="e_name"></span></label><label>Компания<input name="company" autocomplete="organization"><span class="e" id="e_company"></span></label><label>Телефон<input name="phone" id="ph" type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel"><span class="e" id="e_phone"></span></label><label>Email<input name="email" type="email" autocomplete="email"><span class="e" id="e_email"></span></label><label>Telegram (необязательно)<input name="telegram" type="text" placeholder="@username" autocomplete="off"><span class="e" id="e_telegram"></span></label><label>Сфера деятельности<input name="biz"><span class="e" id="e_biz"></span></label><label>Количество сотрудников<select name="size"><option value="">Выберите</option><option>1–5</option><option>6–20</option><option>21–50</option><option>51–200</option><option>Более 200</option></select><span class="e" id="e_size"></span></label><label class="full">Что интересует в CRM (необязательно)<textarea name="comment" rows="3" maxlength="1000"></textarea></label><input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 <div class="full"><label style="display:flex"><input type="checkbox" name="consent"><span>Я даю <button type="button" class="lk" data-d="cons">согласие на обработку персональных данных</button>. <button type="button" class="lk" data-d="priv">Политика конфиденциальности</button></span></label><span class="e" id="e_consent"></span></div>
 <div class="full"><button class="btn p" id="sb" style="width:100%">Получить бесплатный пробный период</button><span class="e" id="st" role="alert" style="margin-top:8px"></span></div></form>
 <div id="ok" hidden class="card" style="text-align:center"><h3>Заявка отправлена</h3><p>Спасибо! Мы свяжемся с вами по указанным контактам.</p></div></div></section>
-</main>
-<div class="page-nav" aria-label="Горизонтальная навигация по разделам">
-  <button type="button" id="pagePrev" aria-label="Предыдущий блок" title="Предыдущий блок"><span aria-hidden="true">‹</span></button>
-  <div class="page-nav-info"><strong id="pageStep">1 / 7</strong><span>блок</span></div>
-  <button type="button" id="pageNext" aria-label="Следующий блок" title="Следующий блок"><span aria-hidden="true">›</span></button>
-</div>
 
+<section id="faq"><div class="w" style="max-width:760px"><h2>Частые вопросы</h2><div id="fq"></div></div></section>
+
+<section><div class="w"><div class="cta"><h2>Начните управлять бизнесом по-новому</h2><p>Познакомьтесь с Alfa CRM и оцените, насколько удобнее может быть работа вашей команды.</p><a class="btn p" href="#lead">Попробовать бесплатно</a></div></div></section>
+</main>
 <footer><div class="w"><div><a class="logo" href="#top">alfa<b>+</b> CRM</a><p style="margin-top:8px">Единое пространство для управления клиентами, продажами и работой команды.</p></div><div><a href="#features">Возможности</a><a href="#faq">FAQ</a><a href="https://vexon-crm.github.io/Alfa-crm/" target="_blank" rel="noopener">Открыть CRM</a></div><div><button class="lk" data-d="priv">Политика конфиденциальности</button><button class="lk" data-d="cons">Согласие на обработку ПДн</button><button class="lk" data-d="cook">Политика cookie</button><button class="lk" id="cs">Настройки cookie</button></div><div id="ct" style="color:var(--m)"></div></div></footer>
 <div class="ck" id="ck" role="dialog" aria-label="Cookie"><p style="color:var(--t)">Мы используем только необходимые cookie. Необязательные (аналитика, реклама) не включаются без вашего согласия.</p><button class="btn p" data-ck="all">Принять</button> <button class="btn" data-ck="min">Отклонить необязательные</button></div>
 <dialog id="dg"><h3 id="dt"></h3><p>Текст документа будет перенесён из действующей CRM и дополнен положениями о заявках с сайта после проверки. Оператор персональных данных: [указать реквизиты].</p><form method="dialog"><button class="btn">Закрыть</button></form></dialog>
 <script>
-
-// Horizontal slide deck. The lead form is deliberately moved outside the deck and remains below it.
-(()=>{
- const main=document.querySelector('main'),lead=document.getElementById('lead');
- const prev=document.getElementById('pagePrev'),next=document.getElementById('pageNext'),step=document.getElementById('pageStep');
- if(!main||!lead||!prev||!next)return;
- const nav=document.querySelector('.page-nav');
- const viewport=document.createElement('div');viewport.id='slidesViewport';viewport.setAttribute('aria-label','Разделы сайта');
- const track=document.createElement('div');track.id='slidesTrack';viewport.appendChild(track);
- const panels=[...main.children].filter(node=>node!==lead).slice(0,7);
- main.insertBefore(viewport,main.firstChild);
- panels.forEach((panel,i)=>{panel.classList.add('slide-panel');panel.setAttribute('role','group');panel.setAttribute('aria-roledescription','слайд');panel.setAttribute('aria-label',`Блок ${i+1} из ${panels.length}`);track.appendChild(panel)});
- // The registration form comes immediately after the 7-slide presentation;
- // FAQ and the final CTA remain below the form as regular page sections.
- main.insertBefore(lead,viewport.nextSibling);
- let current=0,startX=0,startY=0;
- const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
- const paint=()=>{track.style.transform=`translateX(-${current*100}%)`;step.textContent=(current+1)+' / '+panels.length;prev.disabled=current===0;next.disabled=current===panels.length-1;panels.forEach((p,i)=>p.classList.toggle('active',i===current));};
- const go=i=>{current=Math.max(0,Math.min(panels.length-1,i));track.style.transition=reduced()?'none':'';paint();resetIdlePulse()};
- let idleTimer;
- const resetIdlePulse=()=>{if(!nav)return;nav.classList.remove('is-idle');clearTimeout(idleTimer);idleTimer=setTimeout(()=>nav.classList.add('is-idle'),15000)};
- prev.addEventListener('click',()=>go(current-1));next.addEventListener('click',()=>go(current+1));
- ['pointerdown','pointermove','keydown','touchstart'].forEach(type=>document.addEventListener(type,resetIdlePulse,{passive:true}));
- nav.addEventListener('pointerenter',()=>nav.classList.remove('is-idle'));
- document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))return;if(e.key==='ArrowRight')go(current+1);if(e.key==='ArrowLeft')go(current-1)});
- viewport.addEventListener('touchstart',e=>{startX=e.changedTouches[0].clientX;startY=e.changedTouches[0].clientY},{passive:true});
- viewport.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.25)go(current+(dx<0?1:-1))},{passive:true});
- // Support links from the header and cards that target an anchor inside another slide or the form.
- document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const id=a.getAttribute('href').slice(1),target=document.getElementById(id);if(!target)return;if(a.hasAttribute('data-go-lead')||target===lead||lead.contains(target)){e.preventDefault();history.replaceState(null,'','#lead');lead.scrollIntoView({behavior:reduced()?'auto':'smooth',block:'start'});return}const idx=panels.findIndex(p=>p===target||p.contains(target));if(idx>=0){e.preventDefault();history.replaceState(null,'','#'+id);go(idx);if(target!==panels[idx])setTimeout(()=>target.scrollIntoView({behavior:reduced()?'auto':'smooth',block:'start'}),650)}});
- // Give every free-access CTA an explicit, direct handler, including the button in slide 7.
- const goToLead=e=>{e.preventDefault();e.stopImmediatePropagation();history.replaceState(null,'','#lead');const top=lead.getBoundingClientRect().top+window.scrollY-76;window.scrollTo({top:Math.max(0,top),behavior:reduced()?'auto':'smooth'});};
- const trialCta=document.querySelector('#trial a[href="#lead"]');if(trialCta)trialCta.addEventListener('click',goToLead,{capture:true});document.querySelectorAll('a[data-go-lead]').forEach(a=>{if(a!==trialCta)a.addEventListener('click',goToLead,{capture:true})});
- const slideObserver=new IntersectionObserver(entries=>{const visible=entries.some(entry=>entry.isIntersecting);if(nav){nav.style.opacity=visible?'1':'0';nav.style.pointerEvents=visible?'auto':'none'}},{threshold:.15});
- slideObserver.observe(viewport);
- paint();
- resetIdlePulse();
-})();
-
 const CFG={endpoint:'https://alfa-plus-teegram.k9205185111.workers.dev/lead',contacts:'Контакты будут указаны перед запуском'};
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const ic=p=>`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${p}"/></svg>`;
