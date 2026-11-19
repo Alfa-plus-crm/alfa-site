@@ -28,6 +28,44 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rg
 .cl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.cl div{min-height:46px}
 .chaos{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:28px 0}.chaos span{padding:7px 12px;border:1px dashed #4a4a5a;border-radius:10px;color:var(--m);font-size:.85rem}.chaos span:nth-child(odd){transform:rotate(-3deg)}.chaos span:nth-child(even){transform:rotate(2.5deg)}.chaos strong{padding:9px 18px;border-radius:12px;background:linear-gradient(135deg,var(--a),#5a6bff);box-shadow:0 0 30px rgba(124,140,255,.5)}
 .fn div{height:46px;border-radius:10px;margin:0 auto 8px;display:flex;justify-content:space-between;align-items:center;padding:0 16px;background:linear-gradient(90deg,rgba(124,140,255,.38),rgba(94,234,212,.18));font-size:.9rem;transition:width 1s}
+/* Content fills a little more of each panel and enters smoothly on every slide change. */
+@keyframes panelRise{from{opacity:0;transform:translate3d(0,22px,0) scale(.985)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes funnelRise{from{opacity:0;transform:translate3d(0,48px,0) scaleX(.94)}to{opacity:1;transform:translate3d(0,0,0) scaleX(1)}}
+#slidesTrack .slide-enter .w>h2,
+#slidesTrack .slide-enter .w>p,
+#slidesTrack .slide-enter .w>.grid,
+#slidesTrack .slide-enter .w>.two,
+#slidesTrack .slide-enter .w>.card,
+#slidesTrack .slide-enter .w>.chaos,
+#slidesTrack .slide-enter .w>.fn,
+#slidesTrack .slide-enter .w>.src,
+#slidesTrack .slide-enter .w>.cta,
+#slidesTrack .slide-enter .w>.mock{animation:panelRise .58s cubic-bezier(.2,.75,.25,1) both}
+#slidesTrack .slide-enter .w>p{animation-delay:.07s}
+#slidesTrack .slide-enter .w>.grid,
+#slidesTrack .slide-enter .w>.two,
+#slidesTrack .slide-enter .w>.card,
+#slidesTrack .slide-enter .w>.fn{animation-delay:.14s}
+#slidesTrack .slide-enter .grid>.card{animation:panelRise .5s cubic-bezier(.2,.75,.25,1) both}
+#slidesTrack .slide-enter .grid>.card:nth-child(2){animation-delay:.06s}
+#slidesTrack .slide-enter .grid>.card:nth-child(3){animation-delay:.12s}
+#slidesTrack .slide-enter .grid>.card:nth-child(4){animation-delay:.18s}
+#slidesTrack .slide-enter .grid>.card:nth-child(5){animation-delay:.24s}
+#slidesTrack .slide-enter .grid>.card:nth-child(6){animation-delay:.30s}
+#slidesTrack .slide-enter .grid>.card:nth-child(7){animation-delay:.36s}
+#slidesTrack .slide-enter .grid>.card:nth-child(8){animation-delay:.42s}
+#slidesTrack .slide-enter .grid>.card:nth-child(9){animation-delay:.48s}
+#slidesTrack .slide-enter .grid>.card:nth-child(10){animation-delay:.54s}
+#slidesTrack .slide-enter #fn>div{animation:funnelRise .62s cubic-bezier(.2,.75,.25,1) both}
+/* Funnel reveals from its bottom stage upward. */
+#slidesTrack .slide-enter #fn>div:nth-child(1){animation-delay:.48s}
+#slidesTrack .slide-enter #fn>div:nth-child(2){animation-delay:.40s}
+#slidesTrack .slide-enter #fn>div:nth-child(3){animation-delay:.32s}
+#slidesTrack .slide-enter #fn>div:nth-child(4){animation-delay:.24s}
+#slidesTrack .slide-enter #fn>div:nth-child(5){animation-delay:.16s}
+#slidesTrack .slide-enter #fn>div:nth-child(6){animation-delay:.08s}
+@media(prefers-reduced-motion:reduce){#slidesTrack .slide-enter *{animation:none!important}}
+
 .src{display:grid;grid-template-columns:110px 1fr 44px;gap:10px;align-items:center;margin:10px 0;font-size:.9rem}.src i{display:block;height:8px;border-radius:9px;background:linear-gradient(90deg,var(--a),var(--g))}
 .two{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}ul{margin:0;padding-left:18px;color:var(--m)}li{margin:6px 0}
 .tw{overflow-x:auto;border:1px solid var(--b);border-radius:16px}table{border-collapse:collapse;width:100%;min-width:780px;font-size:.88rem}th,td{padding:12px 14px;border-bottom:1px solid var(--b);text-align:left}th:first-child,td:first-child{position:sticky;left:0;background:var(--s)}td.q{color:#6b6b7a}.al{background:rgba(124,140,255,.09)}
@@ -39,10 +77,71 @@ details{border:1px solid var(--b);border-radius:14px;padding:14px 18px;margin-bo
 footer{border-top:1px solid var(--b);padding:40px 0 24px;font-size:.9rem}footer .w{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}footer a,footer .lk{color:var(--m);text-decoration:none;display:block;margin:6px 0}
 .ck{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:70;max-width:560px;margin:auto;background:var(--s);border:1px solid var(--b);border-radius:16px;padding:16px;display:none}.ck.on{display:block}.ck .btn{padding:9px 16px}
 dialog{background:var(--s);color:var(--t);border:1px solid var(--b);border-radius:16px;max-width:520px}dialog::backdrop{background:rgba(0,0,0,.7)}
+
+/* Horizontal presentation: one visible panel at a time */
+html{height:auto;scroll-padding-top:76px}
+body{overflow-x:hidden}
+#slidesViewport{height:calc(100svh - 64px);min-height:540px;width:100%;overflow:hidden;position:relative;padding:10px 12px 14px}
+#slidesTrack{height:100%;width:100%;min-width:0;display:flex;flex-wrap:nowrap;align-items:stretch;will-change:transform;transition:transform .68s cubic-bezier(.22,.75,.25,1)}
+#slidesTrack>*{box-sizing:border-box;flex:0 0 100%;width:100%;min-width:0;max-width:100%;} 
+#slidesTrack>.w.hero,#slidesTrack>section{flex:0 0 100%;width:100%;height:100%;min-width:0;min-height:0;margin:0;padding:0 0 8px;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#45455a transparent;border:1px solid rgba(124,140,255,.30);border-radius:22px;background:linear-gradient(145deg,rgba(23,24,34,.98),rgba(13,13,18,.98));box-shadow:0 18px 55px rgba(0,0,0,.26),inset 0 1px rgba(255,255,255,.035)}
+#slidesTrack>.w.hero{width:100%;max-width:none;margin:0;height:100%;min-height:0;box-sizing:border-box;padding:clamp(24px,4vh,46px) clamp(22px,4vw,56px);display:grid;align-content:center;gap:clamp(20px,3vw,40px)}
+#slidesTrack>section{height:100%;min-height:0;display:flex;flex-direction:column;justify-content:center}
+#slidesTrack>section>.w{width:100%;max-width:1240px;min-height:100%;margin:0 auto;padding:clamp(30px,4.5vh,54px) clamp(24px,4vw,58px);display:flex;flex-direction:column;justify-content:center}
+#slidesTrack h1,#slidesTrack h2,#slidesTrack h3,#slidesTrack p,#slidesTrack li{overflow-wrap:anywhere}
+#slidesTrack .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr));gap:14px}
+#slidesTrack .card{min-width:0}
+#slidesTrack .rv{opacity:1;transform:none}
+#slidesTrack .chaos{gap:8px}
+/* Slide 3: show the complete feature overview at once, without inner scrolling. */
+#slidesTrack>section#features{overflow:hidden;}
+#slidesTrack>section#features>.w{min-height:0;height:100%;padding-top:clamp(16px,3vh,30px);padding-bottom:clamp(16px,3vh,30px);justify-content:center;}
+#slidesTrack>section#features h2{font-size:clamp(1.35rem,2.8vw,2.1rem);margin-bottom:7px;}
+#slidesTrack>section#features>.w>p{margin-bottom:12px;font-size:.9rem;}
+#slidesTrack>section#features .grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;}
+#slidesTrack>section#features .card{padding:12px 13px;border-radius:14px;min-height:0;}
+#slidesTrack>section#features .ib{width:30px;height:30px;border-radius:9px;margin-bottom:6px;}
+#slidesTrack>section#features .ib svg{width:18px;height:18px;}
+#slidesTrack>section#features h3{font-size:.92rem;line-height:1.2;margin:0 0 5px;}
+#slidesTrack>section#features .card p{font-size:.75rem;line-height:1.38;margin:0;}
+#slidesTrack>section#features .mini{display:none;}
+.page-nav{position:fixed;right:24px;bottom:22px;z-index:65;display:flex;align-items:center;justify-content:flex-end;gap:9px;padding:0;border:0;background:transparent;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+.page-nav button{pointer-events:auto;display:grid;place-items:center;width:48px;height:48px;padding:0;border:1px solid rgba(124,140,255,.42);border-radius:14px;background:linear-gradient(145deg,rgba(35,37,58,.97),rgba(18,18,23,.96));color:#fff;font-size:31px;line-height:1;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:transform .2s ease,background .2s ease,border-color .2s ease}
+.page-nav button span{display:grid;place-items:center;width:100%;height:100%;line-height:1;font-family:Arial,sans-serif;transform:translateY(-1px)}
+.page-nav button:hover:not(:disabled){transform:translateY(-2px);background:linear-gradient(145deg,#5968d8,#343f9d);border-color:#a0aeff}
+.page-nav button:active:not(:disabled){transform:scale(.94)}
+.page-nav button:disabled{opacity:.28;cursor:default;box-shadow:none}
+.page-nav-info{min-width:64px;text-align:center;padding:6px 9px;border:1px solid rgba(124,140,255,.3);border-radius:11px;background:rgba(18,18,23,.94);color:var(--m);font-size:10px;line-height:1.25;backdrop-filter:blur(12px);pointer-events:none}
+.page-nav-info strong{display:block;color:var(--t);font-size:14px;letter-spacing:.04em}
+#lead{scroll-margin-top:76px;padding:56px 0 46px;border-top:1px solid var(--b)}
+#faq{padding:48px 0 30px;border-top:1px solid var(--b)}
+#faq+.w,#faq+section{padding-top:28px}
+#lead .w,#faq .w{max-width:760px}
+@media(max-width:700px){
+ #slidesViewport{height:calc(100svh - 64px);min-height:470px;padding:9px 9px 14px}
+ #slidesTrack>.w.hero{grid-template-columns:1fr;padding:24px 18px;gap:20px;border-radius:17px}
+ #slidesTrack>section{border-radius:17px}
+ #slidesTrack>section>.w{padding:28px 20px}
+ #slidesTrack .grid{grid-template-columns:1fr}
+ #slidesTrack>section#features>.w{padding:16px 14px;}
+ #slidesTrack>section#features .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;}
+ #slidesTrack>section#features .card{padding:8px 9px;}
+ #slidesTrack>section#features .ib{display:none;}
+ #slidesTrack>section#features h3{font-size:.78rem;margin-bottom:3px;}
+ #slidesTrack>section#features .card p{font-size:.66rem;line-height:1.25;}
+ #slidesTrack>section#features>.w>p{font-size:.78rem;margin-bottom:8px;}
+ #slidesTrack .mock{grid-template-columns:70px 1fr;padding:10px}
+ .page-nav{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));gap:7px}
+ .page-nav button{width:42px;height:42px;border-radius:12px;font-size:28px}
+ .page-nav-info{min-width:55px;padding:5px 7px}
+ #lead{padding:38px 0 30px}
+}
+@media(prefers-reduced-motion:reduce){#slidesTrack{transition:none}.page-nav button{transition:none}}
+
 </style></head><body>
 <header><div class="w"><a class="logo" href="#top">alfa<b>+</b> CRM</a><nav><a href="#problems">Проблемы</a><a href="#features">Возможности</a><a href="#funnel">Воронка</a><a href="#faq">FAQ</a></nav><a class="btn p" href="#lead">Попробовать бесплатно</a></div></header>
 <main id="top">
-<div class="w hero"><div><span class="tag">Alfa CRM</span><h1 style="margin-top:14px">Весь ваш бизнес.<br><span class="g">В одной системе.</span></h1><p style="font-size:1.1rem">Управляйте клиентами, продажами, командой и бизнес-процессами в Alfa CRM. Меньше хаоса — больше контроля над результатом.</p><div class="bt"><a class="btn p" href="#lead">Попробовать бесплатно</a><a class="btn" href="#features">Посмотреть возможности</a></div><p style="font-size:.9rem">Начните с бесплатного пробного периода.</p></div>
+<div id="slidesViewport" aria-label="Презентация Alfa CRM"><div id="slidesTrack"><div class="w hero"><div><span class="tag">Alfa CRM</span><h1 style="margin-top:14px">Весь ваш бизнес.<br><span class="g">В одной системе.</span></h1><p style="font-size:1.1rem">Управляйте клиентами, продажами, командой и бизнес-процессами в Alfa CRM. Меньше хаоса — больше контроля над результатом.</p><div class="bt"><a class="btn p" href="#lead">Попробовать бесплатно</a><a class="btn" href="#features">Посмотреть возможности</a></div><p style="font-size:.9rem">Начните с бесплатного пробного периода.</p></div>
 <div><div class="mock" aria-label="Пример интерфейса"><aside><span class="on">Главная</span><span>Клиенты</span><span>Сделки</span><span>Задачи</span><span>Аналитика</span><span>Сотрудники</span></aside><div><div class="kp"><div>Заявки<b>240</b></div><div>Сделки<b>58</b></div><div>Конверсия<b>24%</b></div></div><div class="bars"><i style="height:35%"></i><i style="height:55%"></i><i style="height:45%"></i><i style="height:70%"></i><i style="height:62%"></i><i style="height:88%"></i><i style="height:76%"></i></div><div class="cl"><div>Новая заявка</div><div>Переговоры</div><div>Согласование</div></div></div></div><p style="font-size:.78rem;text-align:center;margin-top:12px">Пример интерфейса · демонстрационные данные</p></div></div>
 
 <section id="problems"><div class="w"><h2>Бизнес не должен управляться в десятках разных таблиц и сервисов</h2><div class="chaos"><span>Таблицы</span><span>Чаты</span><span>Заметки</span><span>Почта</span><span>Блокноты</span><span>→</span><strong>alfa+ CRM</strong></div><div class="grid" id="pg"></div></div></section>
@@ -56,8 +155,12 @@ dialog{background:var(--s);color:var(--t);border:1px solid var(--b);border-radiu
 <section><div class="w"><h2>Руководитель и сотрудники — <span class="g">у каждого свой взгляд</span></h2><div class="two"><div class="card rv"><h3>Руководитель</h3><ul><li>Команда, роли и доступы</li><li>Распределение задач</li><li>Результаты и эффективность сотрудников</li></ul></div><div class="card rv"><h3>Сотрудник</h3><ul><li>Свои задачи и клиенты</li><li>Личные показатели</li><li>Ничего лишнего в рабочем экране</li></ul></div></div><p style="margin-top:14px;font-size:.85rem">Реальное ограничение доступа обеспечивается на стороне сервера, а не только скрытием элементов интерфейса.</p></div></section>
 
 
-<section id="trial"><div class="w"><div class="card" style="padding:36px"><h2>Попробуйте Alfa CRM <span class="g">бесплатно</span></h2><p>Не нужно принимать решение вслепую. Познакомьтесь с системой, оцените её возможности и поймите, подходит ли она вашему бизнесу.</p><ul><li>Познакомьтесь с интерфейсом</li><li>Проверьте основные сценарии работы</li><li>Оцените управление клиентами и продажами</li><li>Задайте вопросы нашей команде</li><li>Получите помощь с началом работы</li></ul><p style="margin-top:20px"><a class="btn p" href="#lead">Получить бесплатный доступ</a></p></div></div></section>
-
+<section id="trial"><div class="w"><div class="card" style="padding:36px"><h2>Попробуйте Alfa CRM <span class="g">бесплатно</span></h2><p>Не нужно принимать решение вслепую. Познакомьтесь с системой, оцените её возможности и поймите, подходит ли она вашему бизнесу.</p><ul><li>Познакомьтесь с интерфейсом</li><li>Проверьте основные сценарии работы</li><li>Оцените управление клиентами и продажами</li><li>Задайте вопросы нашей команде</li><li>Получите помощь с началом работы</li></ul><p style="margin-top:20px"><a class="btn p" href="#lead">Получить бесплатный доступ</a></p></div></div></section></div></div>
+<nav class="page-nav" id="pageNav" aria-label="Переключение блоков">
+<button type="button" id="prevSlide" aria-label="Предыдущий блок" disabled><span>‹</span></button>
+<div class="page-nav-info" aria-live="polite"><strong><span id="currentSlide">1</span> / <span id="totalSlides">7</span></strong><span>блок</span></div>
+<button type="button" id="nextSlide" aria-label="Следующий блок"><span>›</span></button>
+</nav>
 <section id="lead"><div class="w" style="max-width:760px"><h2>Оставьте заявку</h2><p>Мы свяжемся с вами, покажем систему и поможем начать.</p>
 <div class="card" role="note" style="margin:18px 0 22px;border-color:rgba(124,140,255,.55);background:rgba(124,140,255,.09)"><div style="display:flex;gap:12px;align-items:flex-start"><span aria-hidden="true" style="font-size:1.35rem;line-height:1.4">ⓘ</span><div><strong style="color:var(--t)">Перед заполнением включите VPN</strong><p style="margin:4px 0 0">Чтобы отправка заявки прошла корректно, включите VPN перед вводом данных. Если VPN уже включён, можете продолжить.</p></div></div></div>
 <form id="fm" class="f" novalidate><label>Имя<input name="name" autocomplete="name"><span class="e" id="e_name"></span></label><label>Компания<input name="company" autocomplete="organization"><span class="e" id="e_company"></span></label><label>Телефон<input name="phone" id="ph" type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel"><span class="e" id="e_phone"></span></label><label>Email<input name="email" type="email" autocomplete="email"><span class="e" id="e_email"></span></label><label>Telegram (необязательно)<input name="telegram" type="text" placeholder="@username" autocomplete="off"><span class="e" id="e_telegram"></span></label><label>Сфера деятельности<input name="biz"><span class="e" id="e_biz"></span></label><label>Количество сотрудников<select name="size"><option value="">Выберите</option><option>1–5</option><option>6–20</option><option>21–50</option><option>51–200</option><option>Более 200</option></select><span class="e" id="e_size"></span></label><label class="full">Что интересует в CRM (необязательно)<textarea name="comment" rows="3" maxlength="1000"></textarea></label><input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -67,8 +170,7 @@ dialog{background:var(--s);color:var(--t);border:1px solid var(--b);border-radiu
 
 <section id="faq"><div class="w" style="max-width:760px"><h2>Частые вопросы</h2><div id="fq"></div></div></section>
 
-<section><div class="w"><div class="cta"><h2>Начните управлять бизнесом по-новому</h2><p>Познакомьтесь с Alfa CRM и оцените, насколько удобнее может быть работа вашей команды.</p><a class="btn p" href="#lead">Попробовать бесплатно</a></div></div></section>
-</main>
+<section><div class="w"><div class="cta"><h2>Начните управлять бизнесом по-новому</h2><p>Познакомьтесь с Alfa CRM и оцените, насколько удобнее может быть работа вашей команды.</p><a class="btn p" href="#lead">Попробовать бесплатно</a></div></div></section></main>
 <footer><div class="w"><div><a class="logo" href="#top">alfa<b>+</b> CRM</a><p style="margin-top:8px">Единое пространство для управления клиентами, продажами и работой команды.</p></div><div><a href="#features">Возможности</a><a href="#faq">FAQ</a><a href="https://vexon-crm.github.io/Alfa-crm/" target="_blank" rel="noopener">Открыть CRM</a></div><div><button class="lk" data-d="priv">Политика конфиденциальности</button><button class="lk" data-d="cons">Согласие на обработку ПДн</button><button class="lk" data-d="cook">Политика cookie</button><button class="lk" id="cs">Настройки cookie</button></div><div id="ct" style="color:var(--m)"></div></div></footer>
 <div class="ck" id="ck" role="dialog" aria-label="Cookie"><p style="color:var(--t)">Мы используем только необходимые cookie. Необязательные (аналитика, реклама) не включаются без вашего согласия.</p><button class="btn p" data-ck="all">Принять</button> <button class="btn" data-ck="min">Отклонить необязательные</button></div>
 <dialog id="dg"><h3 id="dt"></h3><p>Текст документа будет перенесён из действующей CRM и дополнен положениями о заявках с сайта после проверки. Оператор персональных данных: [указать реквизиты].</p><form method="dialog"><button class="btn">Закрыть</button></form></dialog>
@@ -101,4 +203,42 @@ try{const q=new URLSearchParams(location.search),o={name:el.name.value.trim(),co
 const r=await fetch(CFG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)});let result={};try{result=await r.json()}catch{}if(!r.ok||result.success===false||result.ok===false)throw 0;submitted=true;fm.style.display='none';$('#ok').hidden=false}
 catch(e){st.textContent='Не удалось отправить заявку. Попробуйте ещё раз чуть позже.'}
 finally{busy=false;if(!submitted){b.disabled=false;b.textContent='Получить бесплатный пробный период'}}});
+
+// Slide navigation: only the active block is visible.
+(()=>{
+ const track=document.getElementById('slidesTrack');
+ if(!track)return;
+ const slides=[...track.children];
+ const viewport=document.getElementById('slidesViewport');
+ const prev=document.getElementById('prevSlide'),next=document.getElementById('nextSlide');
+ const current=document.getElementById('currentSlide'),total=document.getElementById('totalSlides');
+ const nav=document.getElementById('pageNav');
+ let index=0,busy=false;
+ total.textContent=String(slides.length);
+ function update(){
+   // Move by exactly one viewport width. Percentage transforms on the track
+   // itself incorrectly used the full width of all slides and caused drift.
+   track.style.transform=`translate3d(${-slides[index].offsetLeft}px,0,0)`;
+   current.textContent=String(index+1);
+   prev.disabled=index===0; next.disabled=index===slides.length-1;
+   slides.forEach((slide,i)=>{
+     const active=i===index;
+     slide.setAttribute('aria-hidden',active?'false':'true');
+     slide.inert=!active;
+     slide.classList.remove('slide-enter');
+   });
+   // Restart entrance animations for the newly selected panel.
+   void slides[index].offsetWidth;
+   slides[index].classList.add('slide-enter');
+ }
+ function go(n){if(busy)return;const target=Math.max(0,Math.min(slides.length-1,n));if(target===index)return;busy=true;index=target;update();viewport.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});setTimeout(()=>busy=false,720)}
+ window.addEventListener('resize',update,{passive:true});
+ prev.addEventListener('click',()=>go(index-1));next.addEventListener('click',()=>go(index+1));
+ document.addEventListener('keydown',e=>{if(e.altKey||e.ctrlKey||e.metaKey)return;if(['ArrowRight','PageDown'].includes(e.key)&&!e.target.closest('input,textarea,select,button,summary')){e.preventDefault();go(index+1)}if(['ArrowLeft','PageUp'].includes(e.key)&&!e.target.closest('input,textarea,select,button,summary')){e.preventDefault();go(index-1)}});
+ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const target=document.getElementById(id);if(!target)return;const slideIndex=slides.findIndex(slide=>slide===target||slide.contains(target));if(slideIndex>=0){e.preventDefault();go(slideIndex);return;}if(id==='top'){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});index=0;update();}}));
+ const lead=document.getElementById('lead');
+ if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{const visible=entries.some(x=>x.isIntersecting);nav.style.opacity=visible?'0':'1';nav.style.transform=visible?'translateY(8px)':'none';nav.style.pointerEvents=visible?'none':'auto';},{threshold:.08});observer.observe(lead);}
+ update();
+})();
+
 </script></body></html>
